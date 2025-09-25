@@ -1,0 +1,266 @@
+:root {
+    --primary-color: #003366;
+    /* Dark Blue */
+    --secondary-color: #00509E;
+    /* Medium Blue */
+    --accent-color: #FFD700;
+    /* Golden */
+    --text-dark: #2C3E50;
+    /* Dark Gray */
+    --bg-light: #F8F9FA;
+    /* Light Gray */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+.header {
+    background: orange;
+    color: white;
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.gov-logo {
+    width: 60px;
+    height: 60px;
+    /* background: white; */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Login Button */
+.login-btn {
+    background: blue;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 80, 158, 0.3);
+}
+
+.login-btn:hover {
+    background: #003366;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 80, 158, 0.4);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #EAF2F8 0%, #D6EAF8 100%);
+    /* background-image: url(./watermark-logo-removebg-preview.png); */
+    /* background-image: url(./rural-1.jpeg); */
+    min-height: 100vh;
+    min-width: 100vw;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    /* Light Blue Gradient */
+    padding: 100px 0;
+    margin-top: 3rem;
+    /* opacity: ; */
+    color: #2C3E50;
+    /* Dark Gray for Text */
+    /* position: relative; */
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background: url('https://source.unsplash.com/1920x1080/?education,school') no-repeat center center/cover; */
+    opacity: 0.1;
+    /* Subtle Background Image */
+    z-index: -1;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #00509E;
+    /* Medium Blue for Heading */
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #34495E;
+    /* Slightly Darker Gray for Paragraph */
+}
+
+.hero-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-list li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    color: #2C3E50;
+    /* Dark Gray for List Items */
+}
+
+.hero-list li i {
+    color: #FFD700;
+    /* Golden for Icons */
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Problem Description Section */
+.problem-description {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+.problem-description h2 {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Styles */
+.modal-content {
+    background: #f8f9fa;
+    /* Light Gray Background */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.modal-header {
+    background: var(--primary-color);
+    /* Dark Blue */
+    color: white;
+    padding: 15px 20px;
+    border-bottom: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-header .btn-close {
+    background: white;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.login-option {
+    display: block;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-option:hover {
+    background: var(--secondary-color);
+    /* Medium Blue */
+    color: white;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.login-option i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: var(--accent-color);
+    /* Golden */
+}
+
+.login-option small {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.login-option:hover small {
+    color: white;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-title i {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    /* Golden */
+}

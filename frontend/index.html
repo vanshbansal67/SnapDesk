@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance System - Punjab Education</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="logo-container">
+                        <div class="gov-logo">
+                            <img class="img-fluid" src="../images/watermark-logo-removebg-preview.png" alt="">
+                        </div>
+                        <div class="logo-text">
+                            Punjab Government | Smart Education Initiative
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="floating">Revolutionizing Rural Education</h1>
+                    <p class="lead">
+                        Manual attendance systems in rural schools have been a major challenge, leading to
+                        inefficiencies and errors. Our solution brings automation and accuracy to the forefront.
+                    </p>
+                    <ul class="hero-list">
+                        <li><i class="fas fa-check-circle"></i> Save time and improve efficiency</li>
+                        <li><i class="fas fa-check-circle"></i> Accurate attendance records</li>
+                        <li><i class="fas fa-check-circle"></i> Low-cost and easy to deploy</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <!-- Carousel -->
+                    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data data-bs-interval="2000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="../images/rural-1.jpeg" class="d-block w-100 rounded" alt="Slide 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../images/rural-2.jpeg" class="d-block w-100 rounded" alt="Slide 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../images/mid-day-meal.jpeg" class="d-block w-100 rounded" alt="Slide 3">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="problem-description">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 style="font-size: 2.5rem; font-weight: 700; color: #764ba2;">Problem Description</h2>
+                    <p class="lead">Many rural schools in India rely on manual attendance systems, which are
+                        time-consuming and prone to errors. Teachers spend significant time marking attendance, reducing
+                        instructional time. Additionally, inaccurate records can lead to discrepancies in government
+                        reporting for schemes like mid-day meals.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <h4>Impact</h4>
+                        <p>This issue affects over 50% of rural schools, impacting millions of students and teachers. It
+                            leads to inefficiencies, delays in reporting, and potential mismanagement of resources.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <h4>Expected Outcomes</h4>
+                        <p>A low-cost, user-friendly software or mobile application that automates attendance using
+                            facial recognition or RFID-based systems. Requires minimal infrastructure and training for
+                            deployment in rural schools.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <h4>Stakeholders</h4>
+                        <p>School administrators, teachers, students, and government education departments will benefit
+                            from this solution.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 style="font-size: 2.5rem; font-weight: 700; color: var(--secondary-color);">Key Features</h2>
+                    <p class="lead">Designed specifically for rural schools with limited infrastructure</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Time Saving</h4>
+                        <p>Reduce attendance marking time from 10 minutes to just 2 minutes. More time for teaching and
+                            learning.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>99% Accuracy</h4>
+                        <p>Eliminate manual errors and ensure precise attendance records for government reporting and
+                            meal schemes.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <h4>Cost Effective</h4>
+                        <p>Low-cost RFID solution requiring minimal infrastructure. Perfect for budget-conscious rural
+                            schools.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>User Friendly</h4>
+                        <p>Simple mobile app interface requiring minimal training. Works offline and syncs <br> when
+                            connected.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Secure & Reliable</h4>
+                        <p>Encrypted data transmission and backup systems ensure attendance data is always safe and
+                            accessible.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4>Real-time Reports</h4>
+                        <p>Generate instant reports for administrators and government departments with detailed <br>
+                            analytics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-sign-in-alt"></i> Select Login Type
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <a href="#" class="login-option" onclick="handleLogin('teacher')">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        Teacher Login
+                        <small class="d-block text-muted">Mark attendance, view class reports</small>
+                    </a>
+                    <a href="#" class="login-option" onclick="handleLogin('admin')">
+                        <i class="fas fa-user-cog"></i>
+                        Administration Login
+                        <small class="d-block text-muted">School management, student records</small>
+                    </a>
+                    <a href="#" class="login-option" onclick="handleLogin('government')">
+                        <i class="fas fa-landmark"></i>
+                        Central Government Login
+                        <small class="d-block text-muted">District reports, policy monitoring</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

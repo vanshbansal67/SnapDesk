@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: white;
+            color: #333;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .btn-primary {
+            background: #764ba2;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #5a3e8c;
+            transform: translateY(-2px);
+        }
+
+        .login-footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .login-footer a {
+            color: #764ba2;
+            text-decoration: none;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Teacher Login</h2>
+        <form onsubmit="handleTeacherLogin(event)">
+            <div class="mb-3">
+                <input type="email" class="form-control" id="teacherEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" id="teacherPassword" placeholder="Enter your password"
+                    required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        <div class="login-footer">
+            <p>Forgot your password? <a href="#">Reset it here</a></p>
+        </div>
+    </div>
+
+    <script>
+        function handleTeacherLogin(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get email and password values
+            const email = document.getElementById('teacherEmail').value;
+            const password = document.getElementById('teacherPassword').value;
+
+            // Validate credentials (for demonstration purposes, hardcoded credentials are used)
+            if (email === 'teacher@example.com' && password === 'teacher123') {
+                // Redirect to index2.html with the "teacher" section active
+                window.location.href = './main-dashboard.html?section=teacher';
+            } else {
+                // Show error message
+                alert('Invalid email or password. Please try again.');
+            }
+        }
+    </script>
+</body>
+
+</html>

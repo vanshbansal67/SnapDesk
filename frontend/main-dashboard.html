@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Unified Attendance System — Teacher | Admin | Government</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar" aria-label="Main navigation">
+            <div class="brand">
+                <img src="../images/logo2-removebg-preview.png" alt="logo">
+                <div>
+                    <h3>SchoolPanel</h3>
+                    <div class="muted" style="font-size:12px">Attendance Suite</div>
+                </div>
+            </div>
+
+            <nav class="nav" role="navigation" aria-label="dashboard navigation">
+                <button class="nav-btn active" data-target="teacher">🏫 Teacher Dashboard</button>
+                <button class="nav-btn" data-target="admin">🧑‍💼 Administration</button>
+                <button class="nav-btn" data-target="government">🏛️ Government</button>
+
+                <hr style="border:none;height:1px;background:#eef2f7;border-radius:4px;margin:8px 0">
+                <small class="muted">Tools</small>
+                <button class="nav-btn" data-target="reports">📄 Reports</button>
+                <button class="nav-btn" data-target="settings">⚙️ Settings</button>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <div class="main-wrap">
+            <header class="topbar">
+                <div>
+                    <h2 style="margin:0">Unified Attendance Dashboards</h2>
+                    <div class="small muted">Monitor classes, school and district</div>
+                </div>
+                <div class="top-actions">
+                    <input placeholder="Search..." style="padding:8px;border-radius:10px;border:1px solid #e6e9ef">
+                    <div class="btn ghost" id="exportBtn">Export</div>
+                    <div
+                        style="width:36px;height:36px;border-radius:50%;background:linear-gradient(90deg,#14b8a6,#60a5fa);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">
+                        PS</div>
+                </div>
+            </header>
+
+            <div class="">
+                <!-- TEACHER PAGE -->
+                <section id="teacher" class="page active">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                        <div>
+                            <h3 style="margin:0">Teacher Dashboard</h3>
+                            <div class="small muted">Focus: Daily attendance & student follow-up (class-wise)</div>
+                        </div>
+
+                        <div style="display:flex;gap:12px;align-items:center">
+                            <label class="muted">Select Class</label>
+                            <select id="classSelect"
+                                style="padding:8px;border-radius:10px;border:1px solid #e6e9ef"></select>
+                            <button id="refreshBtn" class="btn primary">Refresh</button>
+                        </div>
+                    </div>
+
+                    <!-- Top stat cards -->
+                    <div class="cards" id="statCards">
+                        <div class="card">
+                            <div class="label">Total Students</div>
+                            <div class="value" id="totalStudents">-</div>
+                            <div class="small muted">Class strength</div>
+                        </div>
+                        <div class="card">
+                            <div class="label">Checked In</div>
+                            <div class="value" id="checkedIn">-</div>
+                            <div class="small muted">Present today</div>
+                        </div>
+                        <div class="card">
+                            <div class="label">Absent</div>
+                            <div class="value" id="absentCount">-</div>
+                            <div class="small muted">Marked absent</div>
+                        </div>
+                        <div class="card">
+                            <div class="label">On Leave</div>
+                            <div class="value" id="onLeave">-</div>
+                            <div class="small muted">Applied leave</div>
+                        </div>
+                    </div>
+
+                    <!-- charts & absent list -->
+                    <div class="grid" style="margin-top:6px">
+                        <div class="col-4 card">
+                            <h4 style="margin:0 0 8px 0">Today's Attendance</h4>
+                            <canvas id="attendancePie" height="220"></canvas>
+                            <div class="small muted" style="margin-top:8px">Present / Absent / On Leave</div>
+                        </div>
+
+                        <div class="col-4 card">
+                            <h4 style="margin:0 0 8px 0">Class Attendance Trend (7 days)</h4>
+                            <canvas id="trendChart" height="220"></canvas>
+                            <div class="small muted" style="margin-top:8px">Hover for details | Dynamic per class</div>
+                        </div>
+
+                        <div class="col-4 card">
+                            <h4 style="margin:0 0 8px 0">Absent Students (Today)</h4>
+                            <table id="absentTable" aria-live="polite">
+                                <thead>
+                                    <tr>
+                                        <th>Roll</th>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-12" style="margin-top:10px">
+                            <div class="card">
+                                <h4 style="margin-top:0">Low Attendance Students (This month)</h4>
+                                <ol id="lowList" style="padding-left:18px;margin:6px 0 0 0"></ol>
+                                <div class="small muted" style="margin-top:8px">Focus these students for follow-up</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ADMIN PAGE -->
+                <section id="admin" class="page">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                        <div>
+                            <h3 style="margin:0">Administration Dashboard</h3>
+                            <div class="small muted">School-level monitoring & operations</div>
+                        </div>
+                        <div style="display:flex;gap:8px">
+                            <button class="btn ghost">Filters</button>
+                            <button class="btn primary">Export</button>
+                        </div>
+                    </div>
+
+                    <div class="cards" style="margin-bottom:12px">
+                        <div class="card">
+                            <div class="label">Total Students</div>
+                            <div class="value">1250</div>
+                            <div class="small muted">All classes</div>
+                        </div>
+                        <div class="card">
+                            <div class="label">Overall Attendance %</div>
+                            <div class="value">92%</div>
+                            <div class="small muted">Today</div>
+                        </div>
+                        <div class="card">
+                            <div class="label">Total Teachers</div>
+                            <div class="value">72</div>
+                            <div class="small muted">All staff</div>
+                        </div>
+                        <div class="card">
+                            <div class="label">Active RFID Readers</div>
+                            <div class="value">18</div>
+                            <div class="small muted">Devices online</div>
+                        </div>
+                    </div>
+
+                    <div class="grid">
+                        <div class="col-6 card">
+                            <h4 style="margin:0 0 8px 0">Attendance by Class (Today)</h4>
+                            <canvas id="adminBar"></canvas>
+                        </div>
+
+                        <div class="col-6 card">
+                            <h4 style="margin:0 0 8px 0">Attendance Source</h4>
+                            <canvas id="adminDoughnut"></canvas>
+                            <div class="small muted" style="margin-top:8px">Device vs Manual</div>
+                        </div>
+
+                        <div class="col-12 card" style="margin-top:12px">
+                            <h4 style="margin:0 0 8px 0">Class Attendance Snapshot</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Class</th>
+                                        <th>Present</th>
+                                        <th>Absent</th>
+                                        <th>%</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>48</td>
+                                        <td>2</td>
+                                        <td>96%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>46</td>
+                                        <td>4</td>
+                                        <td>92%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>45</td>
+                                        <td>5</td>
+                                        <td>90%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>47</td>
+                                        <td>3</td>
+                                        <td>94%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- GOVERNMENT PAGE -->
+                <section id="government" class="page">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                        <div>
+                            <h3 style="margin:0">Government Dashboard</h3>
+                            <div class="small muted">District-level insights & scheme tracking</div>
+                        </div>
+                        <div style="display:flex;gap:8px;align-items:center">
+                            <label class="small muted">Filter:</label>
+                            <select id="govFilter" style="padding:8px;border-radius:8px;border:1px solid #e6e9ef">
+                                <option value="all">All Blocks</option>
+                                <option value="urban">Urban</option>
+                                <option value="rural">Rural</option>
+                            </select>
+                            <button class="btn primary">Apply</button>
+                        </div>
+                    </div>
+
+                    <div class="cards" style="margin-bottom:12px">
+                        <div class="card">
+                            <div class="label">Total Schools</div>
+                            <div class="value">86</div>
+                        </div>
+                        <div class="card">
+                            <div class="label">Total Enrollment</div>
+                            <div class="value">32,400</div>
+                        </div>
+                        <div class="card">
+                            <div class="label">District Attendance %</div>
+                            <div class="value" id="districtAttendance">88%</div>
+                        </div>
+                        <div class="card">
+                            <div class="label">Scheme Beneficiaries</div>
+                            <div class="value">28,500</div>
+                        </div>
+                    </div>
+
+                    <div class="grid">
+                        <div class="col-6 card">
+                            <h4 style="margin:0 0 8px 0">School Attendance Map</h4>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d442242.8370202989!2d74.6404!3d31.1471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919647ff13f4f4f%3A0xe0825f0f42dc91a2!2sPunjab!5e0!3m2!1sen!2sin!4v1695282000000!5m2!1sen!2sin"
+                                width="500" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+
+                            <div class="small muted" style="margin-top:6px">Green >=90%, Yellow 75-90%, Red &lt;75%
+                            </div>
+                        </div>
+
+                        <div class="col-6 card">
+                            <h4 style="margin:0 0 8px 0">Top/Bottom Schools</h4>
+                            <canvas id="topBottomBar"></canvas>
+                        </div>
+
+                        <div class="col-12 card" style="margin-top:12px">
+                            <h4 style="margin:0 0 8px 0">District vs National Trend</h4>
+                            <canvas id="districtTrend"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reports & Settings placeholders -->
+                <section id="reports" class="page">
+                    <div class="card">
+                        <h4>Reports</h4>
+                        <p class="muted">Generate CSV/PDF/letters from here (placeholder).</p>
+                    </div>
+                </section>
+
+                <section id="settings" class="page">
+                    <div class="card">
+                        <h4>Settings</h4>
+                        <p class="muted">User & system settings (placeholder).</p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script src="./js/dashboard.js"></script>
+</body>
+
+</html>
